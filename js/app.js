@@ -21,17 +21,7 @@ const characters = [
         color: "#60a5fa",
         intro: "*ခေါင်းကို ရိုရိုသေသေ ငုံ့ထားပြီး အနည်းငယ် တုန်လှုပ်နေသည်* မင်္ဂလာပါ သခင်... ကျွန်တော်မျိုး ဘာလုပ်ပေးရမလဲ မိန့်တော်မူပါ။"
     }
-
-
-
-
 ];
-
-
-
-
-
-
 
 const offlineBrain = {
     femdom: {
@@ -87,7 +77,7 @@ const offlineBrain = {
                 "*ချက်ချင်း ဒူးထောက်လိုက်သည်* ကျွန်တော်မျိုး မှားသွားပါတယ်! ကြိုက်သလို အပြစ်ပေးပါ သခင်..."
             ],
             praise: [
-                "*ရှက်ပြုံးလေး ပြုံးပြီး ရှက်သွေးဖြန်းသွားသည်* ကျေးဇူးအများကြီးတင်ပါတယ် သခင်! သခင့်ကို အမှုထမ်းရတာ ကျွန်တော်မျိုးရဲ့ အကြီးမားဆုံး ဂုဏ်ယူမှုပါပဲ!",
+                "*ရှက်ပြုံးလေး ပြုံးပြီး ရှက်သွေးဖြန်းသွားသည်* ကျေးဇူးအများကြီးတင်ပါတယ် သခင်! သခင့်ကို အမှုထမ်းရတာ ကျွန်တော်မျိုးရဲ့ အကြီးမားဆုံး ဂုဏ်ယူမှုပါပဲ!",
                 "*ဝမ်းသာစရာ အကြည့်နဲ့ မော့ကြည့်လိုက်သည်* သခင်ရဲ့ ချီးမွမ်းစကား ကြောင့် အရမ်းဝမ်းသာရပါတယ်ခင်ဗျာ!"
             ],
             generic: [
@@ -109,7 +99,7 @@ let chatHistories = {};
 document.addEventListener("DOMContentLoaded", () => {
     renderCharacterList();
 
-    const searchInput = document.getElementById("character-search");
+    const searchInput = document.getElementById("search-input") || document.getElementById("character-search");
     if (searchInput) {
         searchInput.addEventListener("input", filterCharacters);
     }
@@ -120,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================
-   RENDER CHARACTER LIST
+   RENDER CHARACTER LIST (No Blur - Solid UI)
    ========================================= */
 
 function renderCharacterList(list = characters) {
@@ -131,20 +121,21 @@ function renderCharacterList(list = characters) {
 
     list.forEach(character => {
         const card = document.createElement("div");
-        card.className = "glass-card rounded-3xl overflow-hidden cursor-pointer";
+        // Completely removed backdrop-blur for clean solid design
+        card.className = "bg-white border border-slate-200 rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer hover:border-indigo-400 hover:shadow-md transition-all flex flex-col justify-between";
 
         card.innerHTML = `
-            <div class="relative h-64 overflow-hidden">
+            <div class="relative h-48 sm:h-56 overflow-hidden">
                 <img src="${character.avatar}" alt="${character.name}" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                    <h3 class="text-xl font-bold">${character.name}</h3>
-                    <p class="text-sm opacity-90">${character.role}</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-3 left-3 right-3 text-white">
+                    <h3 class="text-base sm:text-lg font-bold truncate">${character.name}</h3>
+                    <p class="text-xs text-slate-200 truncate">${character.role}</p>
                 </div>
             </div>
-            <div class="p-5">
-                <p class="text-slate-600 text-sm mb-4">${character.description}</p>
-                <button class="w-full glass-btn-primary rounded-2xl py-3 font-semibold">
+            <div class="p-3.5 sm:p-5 flex flex-col justify-between flex-1">
+                <p class="text-slate-600 text-xs sm:text-sm mb-3 line-clamp-2">${character.description}</p>
+                <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl sm:rounded-2xl py-2.5 sm:py-3 text-xs sm:text-sm font-semibold shadow-sm transition-colors">
                     ${character.name} Chat
                 </button>
             </div>
@@ -164,13 +155,11 @@ function renderCharacterList(list = characters) {
    ========================================= */
 
 function filterCharacters(event) {
-    // HTML Input ကနေ စာသားကို ယူမည် (event မှမပါရင် DOM မှ တိုက်ရိုက်ယူမည်)
     const inputElement = document.getElementById("search-input") || document.getElementById("character-search");
     if (!inputElement) return;
 
     const keyword = inputElement.value.toLowerCase().trim();
 
-    // နာမည်၊ အခန်းကဏ္ဍ သို့မဟုတ် အသေးစိတ်အချက်အလက်များထဲမှ ရှာမည်
     const filtered = characters.filter(character =>
         character.name.toLowerCase().includes(keyword) ||
         character.role.toLowerCase().includes(keyword) ||
@@ -200,7 +189,7 @@ function selectCharacter(characterId) {
     if (selectionView) selectionView.classList.add("hidden");
     if (chatView) chatView.classList.remove("hidden");
 
-    /* Dynamic UI Header setup */
+    /* Header setup */
     const avatar = document.getElementById("chat-header-avatar");
     const name = document.getElementById("chat-header-name");
     const badge = document.getElementById("chat-header-badge");
@@ -217,7 +206,7 @@ function selectCharacter(characterId) {
 
     setTimeout(() => {
         const input = document.getElementById("chat-input");
-        if (input) input.focus();
+        if (input && window.innerWidth > 768) input.focus();
     }, 100);
 }
 
@@ -232,7 +221,7 @@ function showSelectionView() {
 }
 
 /* =========================================
-   MESSAGE DISPLAY & RENDERING
+   MESSAGE DISPLAY (No Blur - High Contrast)
    ========================================= */
 
 function renderMessages() {
@@ -259,12 +248,13 @@ function addMessageToDOM(text, sender) {
     if (!container) return;
 
     const wrapper = document.createElement("div");
-    wrapper.className = sender === "user" ? "flex justify-end mb-4" : "flex justify-start mb-4";
+    wrapper.className = sender === "user" ? "flex justify-end mb-3 sm:mb-4" : "flex justify-start mb-3 sm:mb-4";
 
     const bubble = document.createElement("div");
+    // Solid background with border for maximum clarity
     bubble.className = sender === "user"
-        ? "glass-bubble-user max-w-[80%] rounded-3xl rounded-br-md px-5 py-3 text-white"
-        : "glass-bubble-bot max-w-[80%] rounded-3xl rounded-bl-md px-5 py-3 text-slate-700";
+        ? "bg-indigo-600 border border-indigo-700 max-w-[85%] sm:max-w-[75%] rounded-2xl sm:rounded-3xl rounded-br-none px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm text-white shadow-sm leading-relaxed"
+        : "bg-white border border-slate-200 max-w-[85%] sm:max-w-[75%] rounded-2xl sm:rounded-3xl rounded-bl-none px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-900 shadow-sm leading-relaxed";
 
     bubble.innerHTML = formatActionText(text);
     wrapper.appendChild(bubble);
@@ -273,7 +263,7 @@ function addMessageToDOM(text, sender) {
 
 function formatActionText(text) {
     if (!text) return "";
-    return text.replace(/\*([^*]+)\*/g, '<span class="chat-action">*$1*</span>');
+    return text.replace(/\*([^*]+)\*/g, '<span class="chat-action font-semibold text-indigo-900 bg-indigo-50 px-1 py-0.5 rounded">* $1 *</span>');
 }
 
 /* =========================================
@@ -299,7 +289,6 @@ async function handleSendMessage(event) {
 
     showTypingIndicator();
 
-    // Natural Delay to simulate AI response speed
     setTimeout(() => {
         hideTypingIndicator();
         const reply = generateOfflineAIReply(message, activeCharacter.mode);
@@ -310,14 +299,13 @@ async function handleSendMessage(event) {
     }, 600 + Math.random() * 800);
 }
 
-/* Local Engine Algorithm with Myanmar Rules */
+/* Local Engine Algorithm */
 function generateOfflineAIReply(userText, mode) {
     const lowerText = userText.toLowerCase();
     const modeBrain = offlineBrain[mode];
 
     if (!modeBrain) return "*တိတ်ဆိတ်စွာ စိုက်ကြည့်နေသည်*";
 
-    // Matching Keyword Algorithm
     for (const category in modeBrain.keywords) {
         const matches = modeBrain.keywords[category].some(kw => lowerText.includes(kw));
         if (matches) {
@@ -326,7 +314,6 @@ function generateOfflineAIReply(userText, mode) {
         }
     }
 
-    // Default response if no match
     return getRandomItem(modeBrain.responses.generic);
 }
 
@@ -361,7 +348,7 @@ function insertActionSymbol() {
     const end = input.selectionEnd;
     const value = input.value;
 
-    input.value = value.substring(0, start) + "*" + value.substring(start, end) + "*" + value.substring(end);
+    input.value = value.substring(0, start) + "*" + value.substring(start, end) + "*";
     input.focus();
     input.selectionStart = start + 1;
     input.selectionEnd = end + 1;
