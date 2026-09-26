@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================
-   RENDER CHARACTER LIST (No Blur - Solid UI)
+   RENDER CHARACTER LIST (Solid UI)
    ========================================= */
 
 function renderCharacterList(list = characters) {
@@ -121,7 +121,6 @@ function renderCharacterList(list = characters) {
 
     list.forEach(character => {
         const card = document.createElement("div");
-        // Completely removed backdrop-blur for clean solid design
         card.className = "bg-white border border-slate-200 rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer hover:border-indigo-400 hover:shadow-md transition-all flex flex-col justify-between";
 
         card.innerHTML = `
@@ -170,7 +169,7 @@ function filterCharacters(event) {
 }
 
 /* =========================================
-   SELECT CHARACTER
+   SELECT CHARACTER (No Blur on Background)
    ========================================= */
 
 function selectCharacter(characterId) {
@@ -189,7 +188,7 @@ function selectCharacter(characterId) {
     if (selectionView) selectionView.classList.add("hidden");
     if (chatView) chatView.classList.remove("hidden");
 
-    /* Header setup */
+    /* Header & Background setup - Blur လုံးဝမပါစေရန် filter ရှင်းထားသည် */
     const avatar = document.getElementById("chat-header-avatar");
     const name = document.getElementById("chat-header-name");
     const badge = document.getElementById("chat-header-badge");
@@ -200,7 +199,12 @@ function selectCharacter(characterId) {
     if (name) name.textContent = character.name;
     if (badge) badge.textContent = character.role;
     if (intro) intro.textContent = character.intro;
-    if (background) background.style.backgroundImage = `url("${character.background}")`;
+    
+    if (background) {
+        background.style.backgroundImage = `url("${character.background}")`;
+        background.style.filter = "none"; // Blur filter များကို လုံးဝဖယ်ရှားထားသည်
+        background.style.webkitFilter = "none";
+    }
 
     renderMessages();
 
@@ -221,7 +225,7 @@ function showSelectionView() {
 }
 
 /* =========================================
-   MESSAGE DISPLAY (No Blur - High Contrast)
+   MESSAGE DISPLAY (Clear High Contrast Bubbles)
    ========================================= */
 
 function renderMessages() {
@@ -251,7 +255,6 @@ function addMessageToDOM(text, sender) {
     wrapper.className = sender === "user" ? "flex justify-end mb-3 sm:mb-4" : "flex justify-start mb-3 sm:mb-4";
 
     const bubble = document.createElement("div");
-    // Solid background with border for maximum clarity
     bubble.className = sender === "user"
         ? "bg-indigo-600 border border-indigo-700 max-w-[85%] sm:max-w-[75%] rounded-2xl sm:rounded-3xl rounded-br-none px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm text-white shadow-sm leading-relaxed"
         : "bg-white border border-slate-200 max-w-[85%] sm:max-w-[75%] rounded-2xl sm:rounded-3xl rounded-bl-none px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-900 shadow-sm leading-relaxed";
@@ -282,7 +285,6 @@ async function handleSendMessage(event) {
 
     input.value = "";
 
-    // Save & render user message
     chatHistories[activeCharacter.id].push({ sender: "user", content: message });
     addMessageToDOM(message, "user");
     scrollChatToBottom();
