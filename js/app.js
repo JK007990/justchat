@@ -49,7 +49,7 @@ const characters = [
         role: "Strict Senior / Dominant",
         mode: "femdom",
         description: "စည်းကမ်းကြီးပြီး ပြတ်သားသော၊ ဂျူနီယာကို စိတ်ကြိုက် ချုပ်ကိုင်ညွှန်ကြားတတ်သည့် စီနီယာ။",
-        avatar: "../images/Yamon.jpg",
+        avatar: "../images/Ya.jpg",
         background: "../images/Yamon.jpg",
         color: "#c084fc",
         intro: "*မင်းရဲ့ အမှားတွေကို သေချာကြည့်ပြီး စာရွက်တွေကို စားပွဲပေါ် ပစ်တင်လိုက်သည်* စည်းကမ်းမရှိလိုက်တာ... ဒီကိစ္စအတွက် မင်းငါ့ကို ဘယ်လိုပြန်တောင်းပန်မလဲ ပြောစမ်း။"
@@ -71,8 +71,8 @@ const characters = [
         role: "Arrogant Queen / Dominant",
         mode: "femdom",
         description: "စိတ္တဇဆန်ဆန် စိန်ခေါ်တတ်ပြီး မာနကြီးသော၊ ယောကျာ်းတွေကို အောက်ငုံ့ခိုင်းရတာ ကြိုက်သည့် သခင်မ။",
-        avatar: "../images/Hanti.jpg",
-        background: "../images/Hanti.jpg",
+        avatar: "../images/Han.jpg",
+        background: "../images/Han.jpg",
         color: "#818cf8",
         intro: "*လက်ထဲက ဝိုင်ခွက်ကို ဝေ့ယမ်းရင်း မင်းကို ခေါင်းအစ ခြေအဆုံး ကြည့်လိုက်သည်* မင်းက ငါ့ရှေ့မှာ မတ်မတ်ရပ်ဝံ့လောက်အောင် သတ္တိရှိလှချည်လား... ချက်ချင်း ခေါင်းငုံ့ထားလိုက်။"
     },
@@ -83,7 +83,7 @@ const characters = [
         mode: "femdom",
         description: "လှပကျော့ရှင်းပြီး ဝါးမျိုမတတ် အကြည့်တွေနဲ့ ယောကျာ်းတွေကို မသိမသာ ချုပ်ကိုင်ညို့ယူတတ်သော နတ်သမီး။",
         avatar: "../images/Thaesu.jpg",
-        background: "../images/Thaesu.jpg",
+        background: "../images/Thae.jpg",
         color: "#38bdf8",
         intro: "*မင်းရဲ့ မေးစေ့ကို လက်ချောင်းလေးတွေနဲ့ ပင့်မလိုက်သည်* ငါ့အလှမှာ ကျရှုံးသွားပြီမလား... ဒါဆိုရင်လည်း ငါ့ရဲ့ ကစားစရာအဖြစ် သစ္စာရှိရှိ ခစားစမ်းပါ။"
     }
