@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Chat - Ai </title>
+    <link rel="stylesheet" href="style.css">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Outfit', 'Padauk', 'sans-serif'],
+                },
+
+                animation: {
+                    'blob-slow': 'blob 18s infinite ease-in-out',
+                    'blob-reverse': 'blobReverse 22s infinite ease-in-out',
+                    'fade-in': 'fadeIn 0.35s ease-out forwards',
+                },
+
+                keyframes: {
+                    blob: {
+                        '0%, 100%': {
+                            transform: 'translate(0px, 0px) scale(1)'
+                        },
+                        '33%': {
+                            transform: 'translate(60px, -80px) scale(1.15)'
+                        },
+                        '66%': {
+                            transform: 'translate(-40px, 40px) scale(0.95)'
+                        },
+                    },
+
+                    blobReverse: {
+                        '0%, 100%': {
+                            transform: 'translate(0px, 0px) scale(1)'
+                        },
+                        '33%': {
+                            transform: 'translate(-70px, 60px) scale(1.2)'
+                        },
+                        '66%': {
+                            transform: 'translate(50px, -30px) scale(0.9)'
+                        },
+                    },
+
+                    fadeIn: {
+                        '0%': {
+                            opacity: '0',
+                            transform: 'translateY(10px)'
+                        },
+                        '100%': {
+                            opacity: '1',
+                            transform: 'translateY(0)'
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Padauk:wght@400;700&display=swap"
+    rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body
+    class="bg-slate-100 text-slate-800 font-sans antialiased h-screen overflow-hidden relative selection:bg-indigo-100 selection:text-indigo-700">
+
+<!-- ========================================= -->
+<!-- BACKGROUND -->
+<!-- ========================================= -->
+
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+
+    <div
+        class="absolute -top-32 -left-32 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-200/70 via-purple-100/60 to-pink-200/70 rounded-full blur-3xl animate-blob-slow">
+    </div>
+
+    <div
+        class="absolute top-1/3 -right-32 w-[650px] h-[650px] bg-gradient-to-br from-blue-100/70 via-cyan-100/60 to-indigo-100/70 rounded-full blur-3xl animate-blob-reverse">
+    </div>
+
+    <div
+        class="absolute -bottom-32 left-1/3 w-[550px] h-[550px] bg-gradient-to-tl from-rose-100/60 via-sky-100/60 to-emerald-100/50 rounded-full blur-3xl animate-blob-slow">
+    </div>
+
+    <div
+        class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-40">
+    </div>
+
+</div>
+
+
+<!-- ========================================= -->
+<!-- MAIN CONTAINER -->
+<!-- ========================================= -->
+
+<div class="relative z-10 flex h-full max-w-7xl mx-auto p-2 sm:p-4 gap-4">
+
+
+    <!-- ========================================= -->
+    <!-- CHARACTER SELECTION VIEW -->
+    <!-- ========================================= -->
+
+    <section id="view-select"
+        class="w-full h-full flex flex-col glass-panel rounded-3xl p-4 sm:p-6 overflow-hidden animate-fade-in">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/90 shrink-0">
+
+            <div class="flex items-center gap-3">
+
+                <div
+                    class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-lg shadow-indigo-300/50">
+
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+
+                </div>
+
+                <div>
+
+                    <h1
+                        class="font-extrabold text-xl sm:text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+                        Just Char - AI
+                    </h1>
+
+                    <p class="text-xs text-slate-500 font-medium">
+                         Character List
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Search -->
+            <div class="relative w-48 sm:w-72">
+
+                <i data-lucide="search"
+                    class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+
+                <input
+                    type="text"
+                    id="search-input"
+                    onkeyup="filterCharacters()"
+                    placeholder="Search Characters..."
+                    class="w-full glass-input pl-10 pr-4 py-2 rounded-2xl text-xs text-slate-800 placeholder-slate-400">
+
+            </div>
+
+        </div>
+
+
+        <!-- Character Grid -->
+        <div id="character-grid"
+            class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pr-1 pb-4">
+
+            <!-- Character cards will be generated by JavaScript -->
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- CHAT VIEW -->
+    <!-- ========================================= -->
+
+    <section id="view-chat"
+        class="hidden w-full h-full flex-1 flex flex-col rounded-3xl relative overflow-hidden animate-fade-in shadow-2xl border border-white">
+
+
+        <!-- Character Background -->
+        <div id="chat-bg-image"
+            class="absolute inset-0 bg-cover bg-center transition-all duration-700 z-0">
+        </div>
+
+
+        <!-- Dark Overlay -->
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-900/40 to-slate-950/80 backdrop-blur-[2px] z-0">
+        </div>
+
+
+
+        <!-- ========================================= -->
+        <!-- CHAT HEADER -->
+        <!-- ========================================= -->
+
+        <div
+            class="p-3 sm:p-4 border-b border-white/20 bg-white/40 backdrop-blur-xl flex items-center justify-between z-10 shrink-0">
+
+            <div class="flex items-center gap-3">
+
+
+                <!-- Back Button -->
+                <button
+                    onclick="showSelectionView()"
+                    class="p-2.5 rounded-2xl glass-card hover:bg-white/90 text-slate-800 transition-colors flex items-center gap-1.5 text-xs font-bold shadow-sm">
+
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+
+                    <span class="hidden sm:inline">
+                        Back
+                    </span>
+
+                </button>
+
+
+                <!-- Avatar -->
+                <div class="relative">
+
+                    <img
+                        id="chat-header-avatar"
+                        src=""
+                        alt="Character"
+                        class="w-11 h-11 rounded-2xl object-cover ring-2 ring-white shadow-md">
+
+                    <span
+                        class="w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-white absolute -bottom-0.5 -right-0.5">
+                    </span>
+
+                </div>
+
+
+                <!-- Character Info -->
+                <div>
+
+                    <div class="flex items-center gap-2">
+
+                        <h2
+                            id="chat-header-name"
+                            class="font-extrabold text-white text-base sm:text-lg leading-tight drop-shadow-sm">
+                            Character Name
+                        </h2>
+
+                        <span
+                            id="chat-header-badge"
+                            class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/80 text-white backdrop-blur-md">
+                            Popular
+                        </span>
+
+                    </div>
+
+                    <p
+                        id="chat-header-intro"
+                        class="text-xs text-slate-200 font-medium line-clamp-1 max-w-xs sm:max-w-md opacity-90">
+                        Introduction...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Chat Actions -->
+            <div class="flex items-center gap-2">
+
+                <button
+                    onclick="clearChatHistory()"
+                    class="p-2.5 rounded-2xl glass-card text-slate-700 hover:text-red-500 transition-colors shadow-sm"
+                    title="Chat ပြန်စရန် (Reset)">
+
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ========================================= -->
+        <!-- CHAT MESSAGES -->
+        <!-- ========================================= -->
+
+        <div
+            id="chat-messages"
+            class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 relative z-10">
+
+            <!-- Messages rendered by JavaScript -->
+
+        </div>
+
+
+
+        <!-- ========================================= -->
+        <!-- TYPING INDICATOR -->
+        <!-- ========================================= -->
+
+        <div
+            id="typing-indicator"
+            class="hidden px-6 py-2 z-10 shrink-0">
+
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl glass-pill text-xs font-semibold text-slate-700 shadow-md">
+
+                <span id="typing-name">
+                    AI
+                </span>
+
+                က စာရိုက်နေသည်...
+
+                <div class="flex gap-1">
+
+                    <span
+                        class="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce">
+                    </span>
+
+                    <span
+                        class="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce [animation-delay:0.2s]">
+                    </span>
+
+                    <span
+                        class="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce [animation-delay:0.4s]">
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ========================================= -->
+        <!-- CHAT INPUT -->
+        <!-- ========================================= -->
+
+        <div
+            class="p-3 sm:p-4 bg-white/30 backdrop-blur-xl border-t border-white/30 z-10 shrink-0">
+
+            <form
+                id="chat-form"
+                onsubmit="handleSendMessage(event)"
+                class="flex items-center gap-2 max-w-4xl mx-auto">
+
+
+                <!-- Action Button -->
+                <button
+                    type="button"
+                    onclick="insertActionSymbol()"
+                    class="p-3 rounded-2xl glass-card text-slate-700 hover:text-indigo-600 shadow-sm"
+                    title="Action ရေးရန် (*action*)">
+
+                    <i data-lucide="asterisk" class="w-5 h-5"></i>
+
+                </button>
+
+
+                <!-- Input -->
+                <div class="relative flex-1">
+
+                    <input
+                        type="text"
+                        id="chat-input"
+                        placeholder="မက်ဆေ့ခ်ျ ပို့ရန် ရိုက်ထည့်ပါ... (*action* အတွက် * သုံးပါ)"
+                        class="w-full glass-input px-4 py-3.5 rounded-2xl text-sm text-slate-900 font-medium placeholder-slate-500 shadow-lg">
+
+                </div>
+
+
+                <!-- Send -->
+                <button
+                    type="submit"
+                    class="glass-btn-primary p-3.5 rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
+
+                    <i data-lucide="send" class="w-5 h-5"></i>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+<!-- ========================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================= -->
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
