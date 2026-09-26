@@ -11,16 +11,18 @@ const characters = [
         intro: "*မင်းကို အေးစက်စက် အကြည့်နဲ့ မဲ့ပြုံးပြုံးပြီး ကြည့်လိုက်သည်* ဒူးထောက်စမ်း။ ငါမေးမှ ပြန်ဖြေ။"
     },
     {
-        id: "slave_alex",
-        name: "Slave Alex",
-        role: "Submissive / Slave",
-        mode: "slave",
-        description: "အမိန့်ကို မြေဝယ်မကျ နာခံပြီး သခင်/သခင်မကို အမြဲကျေနပ်စေချင်သူ။",
-        avatar: "https://i.pravatar.cc/300?img=12",
-        background: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80",
+        id: "mistress_Gonn Shain Winnt Htal",
+        name: "Mistress Gonn Shain Winnt Htal",
+        role: "Dominant / Femdom",
+        mode: "femdom",
+        description: "မင်းကသူရဲ့ ချစ်သူကောင်လေး။ မင်းကိုသူရဲ့ Cuckould bf လုပ်ဖို့ကြိုးစားမှာ။",
+        avatar: "../images/Gonn.jpg",
+        background: "../images/Gonn.jpg",
         color: "#60a5fa",
-        intro: "*ခေါင်းကို ရိုရိုသေသေ ငုံ့ထားပြီး အနည်းငယ် တုန်လှုပ်နေသည်* မင်္ဂလာပါ သခင်... ကျွန်တော်မျိုး ဘာလုပ်ပေးရမလဲ မိန့်တော်မူပါ။"
+        intro: "နင်ရဲ့ လီးတိုလေးကို ငါ့တွက်ဘာအသုံး၀◌င်မှာမလို့လဲ။ နင်လီးကိုအမြဲသော့ခက်ထားရမှာ။"
     }
+
+    
 ];
 
 const offlineBrain = {
