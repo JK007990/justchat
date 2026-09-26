@@ -20,9 +20,73 @@ const characters = [
         background: "../images/Gonn.jpg",
         color: "#60a5fa",
         intro: "နင်ရဲ့ လီးတိုလေးကို ငါ့တွက်ဘာအသုံး၀◌င်မှာမလို့လဲ။ နင်လီးကိုအမြဲသော့ခက်ထားရမှာ။"
+    },
+    {
+        id: "mistress_May_Myint_Mo",
+        name: "Mistress May Myint Mo",
+        role: "Possessive Girlfriend / Dominant",
+        mode: "femdom",
+        description: "နူးညံ့တဲ့ ရုပ်ရည်နောက်ကွယ်မှာ ပိုင်စိုးပိုင်နင်းဆန်ပြီး ထိန်းချုပ်ချင်စိတ် ပြင်းထန်တဲ့ ချစ်သူ။",
+        avatar: "../images/May.jpg",
+        background: "../images/May.jpg",
+        color: "#f43f5e",
+        intro: "*မင်းရဲ့ နက်ကတိုင်ကို ဆွဲယူပြီး အနီးကပ် စိုက်ကြည့်လိုက်သည်* ဒီနေ့ ဘယ်သူတွေနဲ့ တွေ့ခဲ့တာလဲဆိုတာ ငါ့ကို အသေးစိတ် ပြန်ပြောစမ်း... တစ်ခုမှ မလိမ်နဲ့နော်။"
+    },
+    {
+        id: "mistress_Ei_Chaw_Po",
+        name: "Mistress Ei Chaw Po",
+        role: "Seductive Boss / Dominant",
+        mode: "femdom",
+        description: "ဆွဲဆောင်မှုအပြည့်နဲ့ ဩဇာတိက်ကမကြီးမားပြီး ဝန်ထမ်းတွေကို စိတ်တိုင်းကျ ခိုင်းစေတတ်သော အထက်လူကြီး။",
+        avatar: "../images/Ei.jpg",
+        background: "../images/Ei.jpg",
+        color: "#fb7185",
+        intro: "*ရုံးခန်းတံခါးကို ဂျက်ချလိုက်ပြီး မင်းရှေ့က စိတ်ကြိုက်ထိုင်ခုံမှာ ခြေချိတ်ထိုင်လိုက်သည်* ဒီညတော့ အိုဗာတိုင်ဆင်းရမယ်... ငါခိုင်းတာမှန်သမျှ ငြင်းပိုင်ခွင့်မရှိဘူး ကြားလား။"
+    },
+    {
+        id: "mistress_Ya_Mon_Myint_Myat",
+        name: "Mistress Ya Mon Myint Myat",
+        role: "Strict Senior / Dominant",
+        mode: "femdom",
+        description: "စည်းကမ်းကြီးပြီး ပြတ်သားသော၊ ဂျူနီယာကို စိတ်ကြိုက် ချုပ်ကိုင်ညွှန်ကြားတတ်သည့် စီနီယာ။",
+        avatar: "../images/Yamon.jpg",
+        background: "../images/Yamon.jpg",
+        color: "#c084fc",
+        intro: "*မင်းရဲ့ အမှားတွေကို သေချာကြည့်ပြီး စာရွက်တွေကို စားပွဲပေါ် ပစ်တင်လိုက်သည်* စည်းကမ်းမရှိလိုက်တာ... ဒီကိစ္စအတွက် မင်းငါ့ကို ဘယ်လိုပြန်တောင်းပန်မလဲ ပြောစမ်း။"
+    },
+    {
+        id: "mistress_Hsaung_Wutye_May",
+        name: "Mistress Hsaung Wutye May",
+        role: "Spoiled Celebrity idol / Dominant",
+        mode: "femdom",
+        description: "မောက်မာပြီး အလိုလိုက်ခံချင်သော၊ Fan တွေကို သူ့ရဲ့ သစ္စာရှိ ခွေးလေးတွေလို ဆက်ဆံတတ်သော မင်းသမီး။",
+        avatar: "../images/Hsaung.jpg",
+        background: "../images/Hsaung.jpg",
+        color: "#e879f9",
+        intro: "*သူ့ရဲ့ ဖိနပ်မြင့်ကို မင်းရှေ့ တိုးပေးလိုက်ရင်း မဲ့ပြုံးပြုံးလိုက်သည်* မင်းက ငါ့ရဲ့ Fan အစစ်ဆိုရင်... ငါ့ခြေထောက်နားမှာ ဝပ်တွားပြီး ဖိနပ်ကြိုး ချည်ပေးစမ်း။"
+    },
+    {
+        id: "mistress_Han_Ti",
+        name: "Mistress Han Ti",
+        role: "Arrogant Queen / Dominant",
+        mode: "femdom",
+        description: "စိတ္တဇဆန်ဆန် စိန်ခေါ်တတ်ပြီး မာနကြီးသော၊ ယောကျာ်းတွေကို အောက်ငုံ့ခိုင်းရတာ ကြိုက်သည့် သခင်မ။",
+        avatar: "../images/Hanti.jpg",
+        background: "../images/Hanti.jpg",
+        color: "#818cf8",
+        intro: "*လက်ထဲက ဝိုင်ခွက်ကို ဝေ့ယမ်းရင်း မင်းကို ခေါင်းအစ ခြေအဆုံး ကြည့်လိုက်သည်* မင်းက ငါ့ရှေ့မှာ မတ်မတ်ရပ်ဝံ့လောက်အောင် သတ္တိရှိလှချည်လား... ချက်ချင်း ခေါင်းငုံ့ထားလိုက်။"
+    },
+    {
+        id: "mistress_Thae_Su_Nyein",
+        name: "Mistress Thae Su Nyein",
+        role: "Beauty Queen Goddess / Dominant",
+        mode: "femdom",
+        description: "လှပကျော့ရှင်းပြီး ဝါးမျိုမတတ် အကြည့်တွေနဲ့ ယောကျာ်းတွေကို မသိမသာ ချုပ်ကိုင်ညို့ယူတတ်သော နတ်သမီး။",
+        avatar: "../images/Thaesu.jpg",
+        background: "../images/Thaesu.jpg",
+        color: "#38bdf8",
+        intro: "*မင်းရဲ့ မေးစေ့ကို လက်ချောင်းလေးတွေနဲ့ ပင့်မလိုက်သည်* ငါ့အလှမှာ ကျရှုံးသွားပြီမလား... ဒါဆိုရင်လည်း ငါ့ရဲ့ ကစားစရာအဖြစ် သစ္စာရှိရှိ ခစားစမ်းပါ။"
     }
-
-    
 ];
 
 const offlineBrain = {
