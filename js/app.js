@@ -49,8 +49,8 @@ const characters = [
         role: "Strict Senior / Dominant",
         mode: "femdom",
         description: "စည်းကမ်းကြီးပြီး ပြတ်သားသော၊ ဂျူနီယာကို စိတ်ကြိုက် ချုပ်ကိုင်ညွှန်ကြားတတ်သည့် စီနီယာ။",
-        avatar: "../images/Ya.jpg",
-        background: "../images/Yamon.jpg",
+        avatar: "../images/Yamon.jpg",
+        background: "../images/Ya.jpg",
         color: "#c084fc",
         intro: "*မင်းရဲ့ အမှားတွေကို သေချာကြည့်ပြီး စာရွက်တွေကို စားပွဲပေါ် ပစ်တင်လိုက်သည်* စည်းကမ်းမရှိလိုက်တာ... ဒီကိစ္စအတွက် မင်းငါ့ကို ဘယ်လိုပြန်တောင်းပန်မလဲ ပြောစမ်း။"
     },
@@ -71,7 +71,7 @@ const characters = [
         role: "Arrogant Queen / Dominant",
         mode: "femdom",
         description: "စိတ္တဇဆန်ဆန် စိန်ခေါ်တတ်ပြီး မာနကြီးသော၊ ယောကျာ်းတွေကို အောက်ငုံ့ခိုင်းရတာ ကြိုက်သည့် သခင်မ။",
-        avatar: "../images/Han.jpg",
+        avatar: "../images/Hanti.jpg",
         background: "../images/Han.jpg",
         color: "#818cf8",
         intro: "*လက်ထဲက ဝိုင်ခွက်ကို ဝေ့ယမ်းရင်း မင်းကို ခေါင်းအစ ခြေအဆုံး ကြည့်လိုက်သည်* မင်းက ငါ့ရှေ့မှာ မတ်မတ်ရပ်ဝံ့လောက်အောင် သတ္တိရှိလှချည်လား... ချက်ချင်း ခေါင်းငုံ့ထားလိုက်။"
@@ -187,21 +187,33 @@ function renderCharacterList(list = characters) {
 
     list.forEach(character => {
         const card = document.createElement("div");
-        card.className = "bg-white border border-slate-200 rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer hover:border-indigo-400 hover:shadow-md transition-all flex flex-col justify-between";
+        // Phone ရော Laptop မှာပါ ပုံမပျက်ဘဲ အချိုးကျစေမည့် Tailwind Classes
+        card.className = "bg-white/80 backdrop-blur-md border border-white/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full min-h-[300px]";
 
         card.innerHTML = `
-            <div class="relative h-48 sm:h-56 overflow-hidden">
-                <img src="${character.avatar}" alt="${character.name}" class="w-full h-full object-cover">
+            <!-- Character Image Header -->
+            <div class="relative h-40 w-full bg-slate-200 overflow-hidden shrink-0">
+                <img src="${character.avatar}" 
+                     alt="${character.name}" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=No+Image';">
+                
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
-                <div class="absolute bottom-3 left-3 right-3 text-white">
-                    <h3 class="text-base sm:text-lg font-bold truncate">${character.name}</h3>
-                    <p class="text-xs text-slate-200 truncate">${character.role}</p>
+                
+                <div class="absolute bottom-2.5 left-3 right-3 text-white">
+                    <h3 class="text-sm sm:text-base font-bold truncate">${character.name}</h3>
+                    <p class="text-[11px] text-indigo-200 font-medium truncate">${character.role || 'Character'}</p>
                 </div>
             </div>
-            <div class="p-3.5 sm:p-5 flex flex-col justify-between flex-1">
-                <p class="text-slate-600 text-xs sm:text-sm mb-3 line-clamp-2">${character.description}</p>
-                <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl sm:rounded-2xl py-2.5 sm:py-3 text-xs sm:text-sm font-semibold shadow-sm transition-colors">
-                    ${character.name} Chat
+
+            <!-- Description & Button -->
+            <div class="p-3.5 flex flex-col justify-between flex-1 gap-3">
+                <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                    ${character.description}
+                </p>
+                
+                <button class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-95 active:scale-[0.98] text-white rounded-xl py-2 text-xs font-bold shadow-md transition-all mt-auto flex items-center justify-center gap-2">
+                    <span>Chat With ${character.name}</span>
                 </button>
             </div>
         `;
