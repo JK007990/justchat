@@ -120,7 +120,8 @@ const offlineBrain = {
                 "*တင်းမာတဲ့ အကြည့်နဲ့ ကြည့်သည်* သခင်မနဲ့ စကားပြောနေတာကို စကားအပြောအဆို ဆင်ခြင်။"
             ]
         }
-    },
+    }
+};
    
 let activeCharacter = null;
 let chatHistories = {};
