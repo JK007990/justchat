@@ -1,3 +1,140 @@
+const GEMINI_API_KEY = "AQ.Ab8RN6INpH42-on0Ls_LGaAFV0UkuNmaesLk4DqeiCeNhRsfig";
+const GEMINI_MODEL = "gemini-3.8-flash";
+
+
+// =========================================
+// GEMINI AI GENERATION
+// =========================================
+
+async function generateGeminiAIReply(userText) {
+
+    const endpoint =
+        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+
+    const systemInstruction = `
+You are roleplaying as ${activeCharacter.name}.
+
+Role:
+${activeCharacter.role}
+
+Description:
+${activeCharacter.description}
+
+Rules:
+- Speak naturally in Burmese.
+- Stay in character.
+- Keep the personality consistent.
+- Use *asterisks* for actions.
+- Answer the user's latest message naturally.
+- Do not explain that you are an AI unless necessary.
+`;
+
+    const history =
+        chatHistories[activeCharacter.id] || [];
+
+    const contents = history.map(message => ({
+        role: message.sender === "user"
+            ? "user"
+            : "model",
+
+        parts: [
+            {
+                text: String(message.content)
+            }
+        ]
+    }));
+
+
+    // Make sure the latest user message exists
+    if (
+        contents.length === 0 ||
+        contents[contents.length - 1].role !== "user"
+    ) {
+        contents.push({
+            role: "user",
+            parts: [
+                {
+                    text: String(userText)
+                }
+            ]
+        });
+    }
+
+
+    const requestBody = {
+
+        system_instruction: {
+            parts: [
+                {
+                    text: systemInstruction
+                }
+            ]
+        },
+
+        contents: contents,
+
+        generationConfig: {
+            temperature: 0.9,
+            maxOutputTokens: 1024
+        }
+    };
+
+
+    console.log("Sending request to Gemini...");
+    console.log("Model:", GEMINI_MODEL);
+
+
+    const response = await fetch(endpoint, {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": GEMINI_API_KEY
+        },
+
+        body: JSON.stringify(requestBody)
+    });
+
+
+    const data = await response.json();
+
+
+    console.log("Gemini Response:", data);
+
+
+    if (!response.ok) {
+
+        console.error(
+            "Gemini API Error Details:",
+            data
+        );
+
+        throw new Error(
+            data?.error?.message ||
+            `Gemini API Error: ${response.status}`
+        );
+    }
+
+
+    const reply =
+        data?.candidates?.[0]?.content?.parts
+            ?.map(part => part.text || "")
+            .join("")
+            .trim();
+
+
+    if (!reply) {
+
+        throw new Error(
+            "Gemini returned an empty response."
+        );
+    }
+
+
+    return reply;
+}
+
 const characters = [
     {
         id: "mistress_Naw Phaw Eh Htar",
